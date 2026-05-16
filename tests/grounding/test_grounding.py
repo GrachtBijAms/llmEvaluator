@@ -6,12 +6,13 @@ from llm_tester.metrics.grounding import GroundingMetric
 from llm_tester.models.test_case import LLMTestCase
 from llm_tester.evaluators.grounding import GroundingEvaluator
 
+# Test cases for MockLLMAdapter, ExactMatchMetric, GroundingMetric, and GroundingEvaluator
 def test_mock_adapter_returns_response():
     adapter = MockLLMAdapter()
     result = adapter.generate("What is Selenium?")
     assert "MOCK_RESPONSE" in result
 
-
+# ExactMatchMetric tests
 def test_exact_match_metric():
     test_case = LLMTestCase(
         input_text="What is Selenium?",
@@ -35,6 +36,7 @@ def test_exact_match_metric_ignore_case():
     metric = ExactMatchMetric(ignore_case=True)
     score = metric.score(test_case)
     assert score == 1.0
+
 
 def test_exact_match_metric_ignore_punctuation():
     test_case = LLMTestCase(
