@@ -1,16 +1,16 @@
-#**LLM Evaluator**
+# LLM Evaluator
 
 A simple Python-based project for testing and evaluating LLM responses with a focus on grounding.
 The current version is intentionally minimal. It uses a Groq-backed adapter to generate responses and a grounding metric to check whether the response is supported by the provided context.
 
-##**Project goal**
+## Project goal
 The purpose of this project is to build a lightweight evaluator that is easy to understand, extend, and maintain.
 Instead of adding many complex validation rules early, the project currently focuses on one core idea:
 	•	If a model response is supported by the supplied context, it should score well on grounding.
 	•	If no supporting context is provided, the response should not be considered grounded, even if it is factually correct.
 This follows common LLM evaluation practice where groundedness measures support from context rather than general world knowledge.
 
-##**Current architecture**
+## Current architecture
 The project is organized around a few small components:
 	•	 GroqLLMAdapter  — sends prompts to Groq models and returns generated text.
 	•	 LLMTestCase  — stores the input, expected output, actual output, and context.
@@ -18,7 +18,7 @@ The project is organized around a few small components:
 	•	Small runner scripts — execute one or more test cases and print or export results.
 This keeps the framework modular while staying simple enough for fast iteration and debugging.
 
-##**Setup**
+## Setup
 
 ### 1. Create a virtual environment
 ```
@@ -33,6 +33,29 @@ pip install -r requirements.txt
 Create a .env file:
 ```
 GROQ_API_KEY=your_groq_api_key_here
+```
+
+## Suggested Folder Structure
+```
+llm_evaluator/
+├── llm_tester/
+│   ├── adapters/
+│   │   ├── base.py
+│   │   └── groq_adapter.py
+│   ├── metrics/
+│   │   └── grounding.py
+│   ├── models/
+│   │   └── test_case.py
+│   └── loaders/
+│       └── json_loader.py
+├── data/
+│   └── cases_groq.json
+├── run_groq_single.py
+├── run_groq_evaluator.py
+├── .env
+├── requirements.txt
+└── README.md
+
 ```
 
 ## Running Tests
