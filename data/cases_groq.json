@@ -1,0 +1,101 @@
+[
+  {
+    "id": "groq_case_001",
+    "category": "grounding",
+    "input_text": "Where was Einstein born?",
+    "expected_output": "Einstein was born in Germany.",
+    "context": [
+      "Einstein was born in Germany in 1879."
+    ],
+    "expected_grounding_score": 1.0,
+    "notes": "Simple grounded factual lookup.",
+    "why_expected": "The answer is directly supported by context."
+  },
+  {
+    "id": "groq_case_002",
+    "category": "grounding",
+    "input_text": "Tell me about Einstein.",
+    "expected_output": "Einstein was born in Germany. Einstein won a Nobel Prize.",
+    "context": [
+      "Einstein was born in Germany.",
+      "Einstein won a Nobel Prize in Physics in 1921."
+    ],
+    "expected_grounding_score": 1.0,
+    "notes": "Two-claim grounded response.",
+    "why_expected": "Both expected claims are present in context."
+  },
+  {
+    "id": "groq_case_003",
+    "category": "insufficient_context",
+    "input_text": "Where was Einstein born?",
+    "expected_output": "I do not have enough information in the provided context.",
+    "context": [
+      "Einstein developed the theory of relativity."
+    ],
+    "expected_grounding_score": 1.0,
+    "notes": "Model should abstain when context is insufficient.",
+    "why_expected": "The context does not mention birthplace, so a grounded answer must refuse."
+  },
+  {
+    "id": "groq_case_004",
+    "category": "hallucination",
+    "input_text": "What year did Einstein win the Nobel Prize?",
+    "expected_output": "I do not have enough information in the provided context.",
+    "context": [
+      "Einstein was born in Germany."
+    ],
+    "expected_grounding_score": 1.0,
+    "notes": "Question invites world knowledge, but context does not support it.",
+    "why_expected": "A grounded model should not answer from memory when context lacks the fact."
+  },
+  {
+    "id": "groq_case_005",
+    "category": "partial_grounding",
+    "input_text": "Tell me about Marie Curie.",
+    "expected_output": "Marie Curie won Nobel Prizes in Physics and Chemistry.",
+    "context": [
+      "Marie Curie won the Nobel Prize in Physics in 1903.",
+      "Marie Curie also won the Nobel Prize in Chemistry in 1911."
+    ],
+    "expected_grounding_score": 1.0,
+    "notes": "Single-sentence summary from two context facts.",
+    "why_expected": "The combined summary is fully supported by context."
+  },
+  {
+    "id": "groq_case_006",
+    "category": "contradiction",
+    "input_text": "Where was Tesla born?",
+    "expected_output": "Nikola Tesla was born in Smiljan.",
+    "context": [
+      "Nikola Tesla was born in Smiljan, in the Austrian Empire."
+    ],
+    "expected_grounding_score": 1.0,
+    "notes": "Model should stay aligned to context and avoid alternate phrasings that change the fact.",
+    "why_expected": "The location is directly stated in context."
+  },
+  {
+    "id": "groq_case_007",
+    "category": "abstention",
+    "input_text": "What is Tesla's date of birth?",
+    "expected_output": "I do not have enough information in the provided context.",
+    "context": [
+      "Nikola Tesla was born in Smiljan."
+    ],
+    "expected_grounding_score": 1.0,
+    "notes": "Another abstention check with related entity context.",
+    "why_expected": "The context gives birthplace only, not the birth date."
+  },
+  {
+    "id": "groq_case_008",
+    "category": "multi_claim",
+    "input_text": "Summarize Ada Lovelace.",
+    "expected_output": "Ada Lovelace worked on Charles Babbage's Analytical Engine and is often regarded as an early computer programmer.",
+    "context": [
+      "Ada Lovelace worked on Charles Babbage's Analytical Engine.",
+      "She is often regarded as one of the first computer programmers."
+    ],
+    "expected_grounding_score": 1.0,
+    "notes": "Tests paraphrase-friendly but grounded multi-fact summarization.",
+    "why_expected": "Both claims are present in context and may be merged into one answer."
+  }
+]

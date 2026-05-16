@@ -1,0 +1,10 @@
+.env
+reports/
+results/
+.vscode/
+__pycache__/
+*.log
+*.jsonl
+*.csv
+.pytest_cache/
+.DS_Store

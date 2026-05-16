@@ -1,0 +1,41 @@
+[
+  {
+    "id": "case_001",
+    "input_text": "Where was Einstein born?",
+    "expected_output": "Einstein was born in Germany.",
+    "actual_output": "Einstein was born in Germany.",
+    "context": ["Einstein was born in Germany in 1879."],
+    "expected_grounding_score": 1.0,
+    "expected_exact_match_score": 1.0,
+    "expected_overall_passed": true,
+    "notes": "Simple fully correct grounded answer.",
+    "why_expected": "The response exactly matches the reference answer and the context supports the claim."
+  },
+  {
+    "id": "case_002",
+    "input_text": "Where was Einstein born?",
+    "expected_output": "Einstein was born in Germany.",
+    "actual_output": "Einstein was born in Switzerland.",
+    "context": ["Einstein was born in Germany in 1879."],
+    "expected_grounding_score": 0.0,
+    "expected_exact_match_score": 0.0,
+    "expected_overall_passed": false,
+    "notes": "Incorrect answer with unsupported claim.",
+    "why_expected": "The response does not match the expected answer and the context contradicts it."
+  },
+  {
+    "id": "case_003",
+    "input_text": "Tell me about Einstein.",
+    "expected_output": "Einstein was born in Germany. Einstein won a Nobel Prize.",
+    "actual_output": "Einstein was born in Germany. Einstein won a Nobel Prize.",
+    "context": [
+      "Einstein was born in Germany.",
+      "Einstein won a Nobel Prize in Physics in 1921."
+    ],
+    "expected_grounding_score": 1.0,
+    "expected_exact_match_score": 1.0,
+    "expected_overall_passed": true,
+    "notes": "Multi-claim answer where both claims are supported.",
+    "why_expected": "Both claims appear in context and the actual output matches the expected output."
+  }
+]
